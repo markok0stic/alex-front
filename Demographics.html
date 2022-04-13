@@ -1,0 +1,153 @@
+<html>
+<head>
+
+  <meta charset="utf-8" />
+  <title>Demografija</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+
+      body {
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      h1 {
+        text-align:center;
+      }
+
+      h3 {
+        text-align:center;
+        margin-right: 10%;
+        margin-left: 10%;
+
+      }
+
+
+      p {
+          text-align:center;
+      }
+
+      form {
+        position: absolute;
+        left: 40%;
+        top: 60%;
+        width: 500px;
+
+      }
+      /* Style the button */
+      button {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        height: 30px;
+        width: 200px;
+        left: 85%;
+        top: 95%;
+        margin-top: -15px;   /* = -height / 2   */
+        margin-left: -100px; /* = -width / 2    */
+        position: fixed;     /* Fixed is better */
+
+      }
+
+      .button2 {
+        left: 15%;
+      }
+
+      input[type=text] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        /* border: 2px solid red;
+        border-radius: 4px; */
+      }
+
+      input[type=number] {
+        width: 10%
+      }
+
+      .checklist {
+        position: relative;
+        left: 25%;
+        top: 10%;
+        text-align: left;
+        border-style: solid black;
+        border-width: 5px;
+        /* display: inline-block; */
+        padding:5px 30px;
+      }
+
+
+      .border {
+        position: relative;
+        left: 25%;
+        top: 1%;
+        border-style: dashed;
+        border-width: 5px;
+        border-color: grey;
+        text-align: center;
+        width: 50%;
+        padding: 12px 12px;
+      }
+
+</style>
+</head>
+
+<body>
+&nbsp;
+&nbsp;
+
+<h1>Uticaj muzičkog obrazovanja na radnu memoriju - Demografski podaci</h1>
+
+
+<h3>Molimo vas da popunite ove podatke o sebi pre nego što počnete sam eksperiment.</h3>
+
+<div class = "border">
+	<form id = "demograpghicForm" class="checklist">
+		 <label>POL :</label>
+		<label>
+		<input type="radio" id=" female" name="gender" class="gender" value="Ženski">&nbsp;Ženski
+		</label>
+		<label>
+		<input type="radio" id="male" name="gender" class="gender" value="Muški">&nbsp;Muški
+		</label>
+		<label>
+		<input type="radio" id=" other" name="gender" class="gender" value="Drugo">&nbsp;Drugo
+		</label><br><br>
+		<label for="quantity">Starost/godine (23-33): </label>
+		<input type="number" id="quantity" name="quantity" min="1" max="100" value="0"><br><br>
+		<label>Da li svirate neki instrument ili se bavite nekom vrstom pevanja?</label>
+    <br>
+		<label>
+		<input type="radio" id="kamernop" name="struka" value="Da" >&nbsp;Da
+		</label>
+		<label>
+		<input type="radio" id="ne" name="struka" value="Ne">&nbsp;Ne
+		</label>
+		<div id = "instrument1">
+		</div>
+    <br>
+		<label>Da li ste završili nesto od ponudjenog?</label>
+		<label>
+		<br>
+		<input type="radio" id="nms" name="skola" value="Niža muzička škola">&nbsp;Niža muzička škola
+		</label>
+		<label>
+		<input type="radio" id="smz" name="skola" value="Srednja muzička škola" >&nbsp;Srednja muzička škola
+		</label>
+		<label>
+		<input type="radio" id="fmz" name="skola" value="Fakultet muzičke umetnosti" >&nbsp;Fakultet muzičke umetnosti
+		</label>
+		<label>
+		<input type="radio" id="nista" name="skola" value="Ništa od ponuđenog">&nbsp;Ništa od ponuđenog
+		</label>
+	</form>
+</div>
+
+<script type ="module" src="scripts\Demographics.js"> 
+</script>
+
+<button id="exp_button">Nastavi dalje</button>
+
+</body>
+</html>
