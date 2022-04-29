@@ -139,9 +139,8 @@ export class Slucaj{
                     let dom=document.querySelector(".smallContainer");
                     dom.innerHTML="";
                     let c = new Circle(this.klasa);
-                    let randomTop =[115,230,345,460,575,690];
                     setTimeout(() =>{
-                        c.crtajKrugNaLiniji(randomTop[p++]);
+                        c.crtajKrugNaLiniji(p++);
                     },this.timeout); 
                 })
             setTimeout(()=>{document.removeEventListener('keyup',Slucaj.onkeyPressed); resolve();},this.timeout+500);

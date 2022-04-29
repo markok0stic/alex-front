@@ -1,7 +1,6 @@
 body{
     margin: 0;
     display: flex;
-    border: 50px solid grey;
 }
 #textcont{
   font-size: large;

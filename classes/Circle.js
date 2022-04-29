@@ -4,30 +4,47 @@ export class Circle{
     {
         this.klasa=klasa;
     }
-    crtajKrug(host)
+    crtajKrug()
     {
         let dom=document.querySelector(".smallContainer");
         let circle = document.createElement('div');
+        let winheigth = window.innerHeight;
         circle.className=this.klasa;
+        if (winheigth <=800)
+            circle.style="width:2cm;height:2cm;"
+        console.log(winheigth);
+
         dom.appendChild(circle);
     }
-    crtajKrugNaLiniji(randomTop)
+    crtajKrugNaLiniji(randomTopIndex)
     {
         let dom=document.querySelector(".smallContainer");
         dom.classList.add("smallContainer2");
-        let newDiv = document.createElement('div');
-        newDiv.className="newdiv";
-        dom.appendChild(newDiv);
         let circle = document.createElement('div');
+        let randomTop;
+        let winheigth = window.innerHeight;
+        console.log(winheigth);
         circle.className=this.klasa;
+        if (winheigth <=800)
+            {
+                console.log("uslo");
+                randomTop=[0,80,160,240,320,400,480,560,640,720];
+                circle.style="width:2cm;height:2cm;margin-left:0;"
+                console.log(randomTop[randomTopIndex]);
+            }
+        else
+        {
+            randomTop =[0,115,230,345,460,575,690,805,920,1035];
+        }
+        
+        let randomLeft = this.getRandomInt(0, 100);
 
-        //+ 113.3858267717;
-        let randomLeft = this.getRandomInt(0, 150);
+        circle.style.top=randomTop[randomTopIndex] +"px";
+        var plusOrMinus = this.getRandomInt(1,6) <= 3 ? -1 : 1;
+        console.log(plusOrMinus);
+        circle.style.left=window.innerWidth/2 + randomLeft*plusOrMinus +"px";
 
-        circle.style.top=randomTop +"px";
-        //circle.style.left=randomLeft +"px";
-
-        newDiv.appendChild(circle);
+        dom.appendChild(circle);
     }
 
     getRandomInt(min, max) 

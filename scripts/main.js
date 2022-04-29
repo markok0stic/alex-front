@@ -71,7 +71,7 @@ async function startExperiment()
     
     let j =[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]; 
 
-   /*  await shuffle(j);
+     await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
     await crtaj(6,j[i]);
 
@@ -81,11 +81,11 @@ async function startExperiment()
     
     await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
-    await crtaj(10,j[i]); */
+    await crtaj(10,j[i]); 
 
     await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
-    await crtaj2(6,j[i]);
+    await crtaj2(10,j[i]);
 
     await popuniBazu();
 }
