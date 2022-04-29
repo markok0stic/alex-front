@@ -51,6 +51,7 @@ function submitDemographics()
       confirm("Pažnja niste uneli neko polje!");
       else
         {
+          document.getElementById("exp_button").disabled = true;
           let listaVrednsti =[];
           rbs.forEach(el=>{
           listaVrednsti.push(el.value);
@@ -62,6 +63,7 @@ function submitDemographics()
           }).then((s)=>{
             if (s.ok)
             {
+              
               s.json().then((data)=>{
                 let k = new Korisnik(data,uniqueID);
                 window.location.href = "exp.html?ID="+data;
@@ -89,6 +91,7 @@ function submitDemographics()
         confirm("Pažnja niste uneli neko polje!");
         else
           {
+            document.getElementById("exp_button").disabled = true;
             let listaVrednsti =[];
             rbs.forEach(el=>{
             listaVrednsti.push(el.value);
@@ -126,4 +129,6 @@ let rb3 = document.getElementById("ne");
 rb3.onclick=(ev)=>{Nestani();}
 
 let btn = document.getElementById("exp_button");
-btn.onclick=(ev)=>{submitDemographics();}
+btn.onclick=(ev)=>{
+  submitDemographics();
+}
