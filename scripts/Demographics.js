@@ -51,6 +51,7 @@ function submitDemographics()
       confirm("Pažnja niste uneli neko polje!");
       else
         {
+          document.getElementById("textcont").innerHTML="Molimo sačekajte experiment se učitava!";
           document.getElementById("exp_button").disabled = true;
           let listaVrednsti =[];
           rbs.forEach(el=>{
@@ -91,6 +92,7 @@ function submitDemographics()
         confirm("Pažnja niste uneli neko polje!");
         else
           {
+            document.getElementById("textcont").innerHTML="Molimo sačekajte experiment se učitava!";
             document.getElementById("exp_button").disabled = true;
             let listaVrednsti =[];
             rbs.forEach(el=>{
