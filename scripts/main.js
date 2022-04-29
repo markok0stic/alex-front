@@ -58,7 +58,7 @@ function openFullscreen()
 	else if (document.documentElement.msRequestFullscreen) 
 		document.documentElement.msRequestFullscreen();
 }   
-let brojIteracija = 3;
+let brojIteracija = 1;
 
 async function startExperiment()
 {
@@ -115,6 +115,7 @@ function shuffle(array) {
 
 function popuniBazu()
 {
+    document.querySelector(".mainContainer").innerHTML="<center><h1>OVO JE KRAJ EXPERIMENTA</h1></center>";
     console.log(listaOdgovora);
     console.log(listaResenja);
     console.log(listaVremenaReakcije);
