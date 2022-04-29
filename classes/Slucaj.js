@@ -20,7 +20,7 @@ export class Slucaj{
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
     }
 
-    crtajStandard()
+    crtajKrugStandard()
     {
         return new Promise ((resolve) =>{
         document.removeEventListener('keyup',this.onkeyPressed); 
@@ -48,13 +48,13 @@ export class Slucaj{
                 let dom=document.querySelector(".smallContainer");
                 dom.innerHTML="";
                 let c = new Circle(this.klasa);
-                setTimeout(() =>{c.crtajKrug(dom);},this.timeout); 
+                setTimeout(() =>{c.crtajKrug();},this.timeout); 
             })
         setTimeout(()=>{document.removeEventListener('keyup',Slucaj.onkeyPressed); resolve();},this.timeout+500);
     });
     }
 
-    crtajTest(istislucaj)
+    crtajKrugTest(istislucaj)
     {
         return new Promise ((resolve) =>{
         let lbl = document.querySelector('.lblNaslov');
@@ -72,7 +72,7 @@ export class Slucaj{
                     let dom=document.querySelector(".smallContainer");
                     dom.innerHTML="";
                     let c = new Circle(this.klasa);
-                    setTimeout(() =>{c.crtajKrug(dom);},this.timeout); 
+                    setTimeout(() =>{c.crtajKrug();},this.timeout); 
                 })
         }
         else
@@ -109,13 +109,50 @@ export class Slucaj{
                 {
                     this.timeout+=this.listaRandomIntervala[i];
                     let c = new Circle(this.klasa);
-                    setTimeout(() =>{c.crtajKrug(dom);},this.timeout);
+                    setTimeout(() =>{c.crtajKrug();},this.timeout);
                 }
         }
         setTimeout(()=>{document.removeEventListener('keyup',Slucaj.onkeyPressed); resolve();},this.timeout+2500);
     });
     }
-    
+    crtajLinijuStandard()
+    {
+        return new Promise ((resolve) =>{
+            document.removeEventListener('keyup',this.onkeyPressed); 
+            let lblodg = document.querySelector(".lblOdg");
+            lblodg.innerHTML="";
+            this.klasa="linecircle";
+            let i=0;
+            while (i<this.brojKrugova)
+            {
+                let p= this.getRandomInt(0,5);
+                this.listaRandomIntervala.push(this.listaIntervala[p]);
+                i++;
+            }
+            let lbl = document.querySelector('.lblNaslov');
+            lbl.innerHTML="STANDARD";
+            this.timeout=1000;
+            let p=0;
+            this.listaRandomIntervala.forEach(el=>
+                {
+                    this.timeout+=el;
+                    let dom=document.querySelector(".smallContainer");
+                    dom.innerHTML="";
+                    let c = new Circle(this.klasa);
+                    let randomTop =[115,230,345,460,575,690];
+                    setTimeout(() =>{
+                        c.crtajKrugNaLiniji(randomTop[p++]);
+                    },this.timeout); 
+                })
+            setTimeout(()=>{document.removeEventListener('keyup',Slucaj.onkeyPressed); resolve();},this.timeout+500);
+        });
+    }
+
+    crtajLinijuTest()
+    {
+
+    }
+
     async waitingKeypress() 
     {
                      console.log('waiting keypress..');

@@ -71,7 +71,7 @@ async function startExperiment()
     
     let j =[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]; 
 
-    await shuffle(j);
+   /*  await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
     await crtaj(6,j[i]);
 
@@ -81,7 +81,11 @@ async function startExperiment()
     
     await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
-    await crtaj(10,j[i]);
+    await crtaj(10,j[i]); */
+
+    await shuffle(j);
+    for ( let i =0;i<brojIteracija;i++)
+    await crtaj2(6,j[i]);
 
     await popuniBazu();
 }
@@ -91,14 +95,30 @@ function crtaj(broj,pom)
     return new Promise (async (resolve)=>
     {
         let s = new Slucaj(broj);
-        await s.crtajStandard();
-        await s.crtajTest(pom).then(()=>
+        await s.crtajKrugStandard();
+        await s.crtajKrugTest(pom).then(()=>
         {
             listaOdgovora.push(Slucaj.Odgovor);
             listaResenja.push(s.resenje);
             listaVremenaReakcije.push(Slucaj.vremeReakcije);
         });
         resolve();
+    });
+}
+
+function crtaj2(broj,pom)
+{
+    return new Promise (async (resolve)=>
+    {
+        let s = new Slucaj(broj);
+        await s.crtajLinijuStandard();
+        /* await s.crtajLinijuTest(pom).then(()=>
+        {
+            listaOdgovora.push(Slucaj.Odgovor);
+            listaResenja.push(s.resenje);
+            listaVremenaReakcije.push(Slucaj.vremeReakcije);
+        });
+        resolve(); */
     });
 }
 
@@ -115,7 +135,7 @@ function shuffle(array) {
 
 function popuniBazu()
 {
-    document.querySelector(".mainContainer").innerHTML="<center><h1>OVO JE KRAJ EXPERIMENTA</h1></center>";
+    document.querySelector(".mainContainer").innerHTML="<center><h1>Sledeći eksperiment se pokreće, molimo sačekajte!</h1></center>";
     console.log(listaOdgovora);
     console.log(listaResenja);
     console.log(listaVremenaReakcije);
@@ -150,6 +170,8 @@ function popuniBazu()
         if (s.ok)
         {
             console.log("uspesno");
+            document.querySelector(".mainContainer").innerHTML="<center><h1>Sledeći eksperiment se pokreće, molimo sačekajte!</h1></center>";
+
         }
     }
    )
