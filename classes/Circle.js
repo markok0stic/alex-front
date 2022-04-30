@@ -33,7 +33,7 @@ export class Circle{
         else
         {
             randomTop =[0,115,230,345,460,575,690,805,920,1035];
-            posplus=75;
+            posplus=65;
         }
 
         circle.style.top=randomTop[randomTopIndex]+posplus +"px";
