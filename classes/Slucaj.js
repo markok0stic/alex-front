@@ -6,6 +6,8 @@ export class Slucaj{
         this.brojKrugova = brojKrugova;
         this.listaIntervala = [100,150,200,250,300];
         this.listaRandomIntervala = [];
+        this.listaRandomPozicija=[];
+        this.plusminus=[];
         this.timeout=0;
         this.klasa="";
         this.resenje="*";
@@ -97,12 +99,11 @@ export class Slucaj{
             for (let i=0;i<this.listaRandomIntervala.length;i++)
                 if ( i == temp[t] )
                 {
-                    let s=0;
                     let p=this.getRandomInt(0, 5);
                     this.listaRandomIntervala[i] = this.listaIntervala[p];
                     this.timeout+=this.listaRandomIntervala[i];
                     let c = new Circle(this.klasa);
-                    setTimeout(() =>{c.crtajKrug(dom);},this.timeout);
+                    setTimeout(() =>{c.crtajKrug();},this.timeout);
                     t++;
                 }
                 else
@@ -139,17 +140,87 @@ export class Slucaj{
                     let dom=document.querySelector(".smallContainer");
                     dom.innerHTML="";
                     let c = new Circle(this.klasa);
+                    this.plusminus.push(this.getRandomInt(1,6) < 3 ? -1 : 1);
+                    this.listaRandomPozicija.push(this.getRandomInt(0, 100));
                     setTimeout(() =>{
-                        c.crtajKrugNaLiniji(p++);
+                        c.crtajKrugNaLiniji(p,this.plusminus[p],this.listaRandomPozicija[p]);
+                        p++;
                     },this.timeout); 
                 })
             setTimeout(()=>{document.removeEventListener('keyup',Slucaj.onkeyPressed); resolve();},this.timeout+500);
         });
     }
 
-    crtajLinijuTest()
+    crtajLinijuTest(istislucaj)
     {
-
+        return new Promise ((resolve) =>{
+            this.klasa="linecircle";
+            let lbl = document.querySelector('.lblNaslov');
+            lbl.innerHTML="TEST";
+            let lblodg = document.querySelector(".lblOdg");
+            lblodg.innerHTML="STISNI <b>A</b> UKOLIKO RAZLIKA POSTOJI ILI <b>L</b> UKOLIKO RAZLIKA NE POSTOJI";
+            if (istislucaj)
+            {
+                this.resenje="RAZLIKA-NE-POSTOJI";
+                this.timeout=1000;
+                setTimeout(()=>this.waitingKeypress(),this.timeout+this.listaRandomIntervala[0]);
+                let p = 0;
+                this.listaRandomIntervala.forEach(el=>
+                    {               
+                        this.timeout+=el;
+                        let dom=document.querySelector(".smallContainer");
+                        dom.innerHTML="";
+                        let c = new Circle(this.klasa);
+                        setTimeout(() =>{
+                            c.crtajKrugNaLiniji(p,this.plusminus[p],this.listaRandomPozicija[p]);
+                            p++;
+                        },this.timeout); 
+                    })
+            }
+            else
+            {
+                let dom=document.querySelector(".smallContainer");
+                dom.innerHTML="";
+                this.resenje="POSTOJI-RAZLIKA";
+                this.timeout=1000;
+                let randomNumofPairTestCircles = this.getRandomInt(4, 1);// num of diff timeout circles
+                let t=1;
+                let temp= [];// indexes of pairs that have diff timeout than standards
+                while (t <= randomNumofPairTestCircles)
+                {
+                    let randomPair= this.getRandomInt(1,this.brojKrugova);
+                    t++;
+                    temp.push(randomPair);
+                }
+                temp.sort(function(a, b){return a - b}); //sort
+    
+                setTimeout(()=>this.waitingKeypress(),this.timeout+this.listaRandomIntervala[0]);
+                t=0;
+                for (let i=0;i<this.listaRandomIntervala.length;i++)
+                    if ( i == temp[t] )
+                    {
+                        let DaLiSePozicijaMenja = this.getRandomInt(1,6) < 3 ? 0 : 1;
+                        if(DaLiSePozicijaMenja)
+                        {
+                            this.plusminus[i]=this.getRandomInt(1,6) < 3 ? -1 : 1;
+                            this.listaRandomPozicija[i]=this.getRandomInt(0, 100);
+                        } 
+                        let p=this.getRandomInt(0, 5);
+                        this.listaRandomIntervala[i] = this.listaIntervala[p];
+                        this.timeout+=this.listaRandomIntervala[i];
+                        let c = new Circle(this.klasa);
+                        setTimeout(() =>{c.crtajKrugNaLiniji(i,this.listaRandomPozicija[i],this.plusminus[i]);},this.timeout);
+                        t++;
+                    }
+                    else
+                    {
+                        this.timeout+=this.listaRandomIntervala[i];
+                        let c = new Circle(this.klasa);
+                        setTimeout(() =>{c.crtajKrugNaLiniji(i,this.listaRandomPozicija[i],this.plusminus[i]);},this.timeout);
+                    }
+            }
+            setTimeout(()=>{document.removeEventListener('keyup',Slucaj.onkeyPressed); resolve();},this.timeout+2500);
+        });
     }
 
     async waitingKeypress() 

@@ -12,38 +12,33 @@ export class Circle{
         circle.className=this.klasa;
         if (winheigth <=800)
             circle.style="width:2cm;height:2cm;"
-        console.log(winheigth);
 
         dom.appendChild(circle);
     }
-    crtajKrugNaLiniji(randomTopIndex)
+    crtajKrugNaLiniji(randomTopIndex,randomLeft,plusOrMinus)
     {
         let dom=document.querySelector(".smallContainer");
         dom.classList.add("smallContainer2");
         let circle = document.createElement('div');
         let randomTop;
+        let posplus;
         let winheigth = window.innerHeight;
-        console.log(winheigth);
         circle.className=this.klasa;
         if (winheigth <=800)
             {
-                console.log("uslo");
                 randomTop=[0,80,160,240,320,400,480,560,640,720];
+                posplus=60;
                 circle.style="width:2cm;height:2cm;margin-left:0;"
-                console.log(randomTop[randomTopIndex]);
             }
         else
         {
             randomTop =[0,115,230,345,460,575,690,805,920,1035];
+            posplus=100;
         }
-        
-        let randomLeft = this.getRandomInt(0, 100);
 
-        circle.style.top=randomTop[randomTopIndex] +"px";
-        var plusOrMinus = this.getRandomInt(1,6) <= 3 ? -1 : 1;
-        console.log(plusOrMinus);
+        circle.style.top=randomTop[randomTopIndex]+posplus +"px";
         circle.style.left=window.innerWidth/2 + randomLeft*plusOrMinus +"px";
-
+        
         dom.appendChild(circle);
     }
 

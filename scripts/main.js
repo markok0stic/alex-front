@@ -58,7 +58,7 @@ function openFullscreen()
 	else if (document.documentElement.msRequestFullscreen) 
 		document.documentElement.msRequestFullscreen();
 }   
-let brojIteracija = 1;
+let brojIteracija = 2;
 
 async function startExperiment()
 {
@@ -71,7 +71,7 @@ async function startExperiment()
     
     let j =[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]; 
 
-     await shuffle(j);
+    await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
     await crtaj(6,j[i]);
 
@@ -85,7 +85,7 @@ async function startExperiment()
 
     await shuffle(j);
     for ( let i =0;i<brojIteracija;i++)
-    await crtaj2(10,j[i]);
+    await crtaj2(8,j[i]);
 
     await popuniBazu();
 }
@@ -112,13 +112,13 @@ function crtaj2(broj,pom)
     {
         let s = new Slucaj(broj);
         await s.crtajLinijuStandard();
-        /* await s.crtajLinijuTest(pom).then(()=>
+        await s.crtajLinijuTest(pom).then(()=>
         {
             listaOdgovora.push(Slucaj.Odgovor);
             listaResenja.push(s.resenje);
             listaVremenaReakcije.push(Slucaj.vremeReakcije);
         });
-        resolve(); */
+        resolve();
     });
 }
 
@@ -135,7 +135,7 @@ function shuffle(array) {
 
 function popuniBazu()
 {
-    document.querySelector(".mainContainer").innerHTML="<center><h1>Sledeći eksperiment se pokreće, molimo sačekajte!</h1></center>";
+    document.querySelector(".mainContainer").innerHTML="<center><h1>Experiment se završava, molimo sačekajte!</h1></center>";
     console.log(listaOdgovora);
     console.log(listaResenja);
     console.log(listaVremenaReakcije);
@@ -165,14 +165,13 @@ function popuniBazu()
    {
     method:"PUT",
     headers: {'Content-Type': 'application/json'},
-   }).then(s=>
+   }).then(async s=>
     {
         if (s.ok)
         {
             console.log("uspesno");
-            document.querySelector(".mainContainer").innerHTML="<center><h1>Sledeći eksperiment se pokreće, molimo sačekajte!</h1></center>";
-
+            document.querySelector(".mainContainer").innerHTML="<center><h1>Eksperiment je završen, hvala na učestvovanju!</h1></center>"; 
+           await document.exitFullscreen();
         }
-    }
-   )
+    })
 }
