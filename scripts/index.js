@@ -1,42 +1,39 @@
 function getUrlParameter(name) {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  var results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null
+        ? ""
+        : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
-function pad (myNum, size) {
+function pad(myNum, size) {
     var s = String(myNum);
-    while (s.length < (size || 2)) {s = "0" + s;}
+    while (s.length < (size || 2)) {
+        s = "0" + s;
+    }
     return s;
-    }
+}
 
-    var uniqueID=null;
-  
-  
-    var sessionStart;
-    var sessionKey;
-    var sourceString
-    var thisParam1;
-    var thisParam2;
-    var thisParam3;
-    var uniqueID;
-  
-    if (thisParam1 = getUrlParameter('ID')) {
-      sessionStart = thisParam1;
-    } else {
-      sessionStart = pad(Date.now(),16);
-      sessionKey = Math.floor(Math.random() * 1000);
-      sessionKey = pad(sessionKey,4);
-    }
-  
-    uniqueID = sessionStart + "_" + sessionKey;
+var sessionStart;
+var sessionKey;
+var thisParam1;
+var uniqueID;
 
-  var pageString = "obtainConsent.html?ID=";
-  var finalURL = pageString+uniqueID.toString();
+if ((thisParam1 = getUrlParameter("ID"))) {
+    sessionStart = thisParam1;
+} else {
+    sessionStart = pad(Date.now(), 16);
+    sessionKey = Math.floor(Math.random() * 1000);
+    sessionKey = pad(sessionKey, 4);
+}
 
-  document.getElementById("idBox").value = uniqueID;
-  document.getElementById("exp_button1").onclick=ev=>{ 
-  window.location.href = finalURL; }
+uniqueID = sessionStart + "_" + sessionKey;
 
+var pageString = "obtainConsent.html?ID=";
+var finalURL = pageString + uniqueID.toString();
 
+document.getElementById("idBox").value = uniqueID;
+document.getElementById("exp_button1").onclick = (ev) => {
+    window.location.href = finalURL;
+};

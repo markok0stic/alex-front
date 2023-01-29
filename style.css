@@ -1,20 +1,20 @@
-html,body{
-  width: 100%;
-  height: 100%;
-  margin: 0; /* Space from this element (entire page) and others*/
-  padding: 0; /*space from content and border*/
-  border: solid grey;
-  border-width: 10px;
-  overflow:hidden;
-  display:block;
-  box-sizing: border-box;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0; /* Space from this element (entire page) and others*/
+    padding: 0; /*space from content and border*/
+    border: solid grey;
+    border-width: 10px;
+    overflow: hidden;
+    display: block;
+    box-sizing: border-box;
 }
-#textcont{
-  font-size: large;
-  font-weight: bold;
+#textcont {
+    font-size: large;
+    font-weight: bold;
 }
-.mainContainer{
-  
+.mainContainer {
     display: flex;
     flex: 1 1;
     width: 100%;
@@ -25,7 +25,7 @@ html,body{
     align-items: center;
     flex-direction: column;
 }
-.lblNaslov{
+.lblNaslov {
     text-align: center;
     align-self: center;
     font-size: 40px;
@@ -35,8 +35,7 @@ html,body{
     margin-right: 0;
     font-weight: bold;
 }
-.btnStart
-{
+.btnStart {
     align-self: flex-end;
     text-align: center;
     appearance: none;
@@ -48,27 +47,24 @@ html,body{
     margin-left: -100px;
     position: fixed;
 }
-.smallContainer
-{
+.smallContainer {
     display: flex;
     flex: 0 0;
-    margin-right:5%;
+    margin-right: 5%;
 }
-.smallContainer2
-{
-  display: flex;
-  flex-direction: column;
-  flex: 0 0;
-  margin-right:5%;
+.smallContainer2 {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0;
+    margin-right: 5%;
 }
-b{
-  color:red;
+b {
+    color: red;
 }
-.lblOdg
-{
-  font-size: 25px;
+.lblOdg {
+    font-size: 25px;
 }
-.circle{
+.circle {
     position: absolute;
     width: 3cm;
     height: 3cm;
@@ -77,27 +73,27 @@ b{
     margin-top: 300px;
 }
 .circle:nth-child(1) {
-transform: rotate(-90deg) translateX(250px);
+    transform: rotate(-90deg) translateX(250px);
 }
 
 .circle:nth-child(2) {
-transform: rotate(-35deg) translateX(250px);
+    transform: rotate(-35deg) translateX(250px);
 }
 
 .circle:nth-child(3) {
-transform: rotate(35deg) translateX(250px);
+    transform: rotate(35deg) translateX(250px);
 }
 
 .circle:nth-child(4) {
-transform: rotate(90deg) translateX(250px);
+    transform: rotate(90deg) translateX(250px);
 }
 
 .circle:nth-child(5) {
-transform: rotate(145deg) translateX(250px);
+    transform: rotate(145deg) translateX(250px);
 }
 
 .circle:nth-child(6) {
-transform: rotate(-145deg) translateX(250px);
+    transform: rotate(-145deg) translateX(250px);
 }
 
 .circle2 {
@@ -107,88 +103,84 @@ transform: rotate(-145deg) translateX(250px);
     background: grey;
     border-radius: 50%;
     margin-top: 300px;
-  }
+}
 
-  .circle2:nth-child(1) {
+.circle2:nth-child(1) {
     transform: rotate(-90deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(2) {
+.circle2:nth-child(2) {
     transform: rotate(-45deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(3) {
+.circle2:nth-child(3) {
     transform: rotate(0deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(4) {
+.circle2:nth-child(4) {
     transform: rotate(45deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(5) {
+.circle2:nth-child(5) {
     transform: rotate(90deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(6) {
+.circle2:nth-child(6) {
     transform: rotate(135deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(7) {
+.circle2:nth-child(7) {
     transform: rotate(180deg) translateX(250px);
-  }
+}
 
-  .circle2:nth-child(8) {
+.circle2:nth-child(8) {
     transform: rotate(225deg) translateX(250px);
-  }
+}
 
-  .circle3 {
+.circle3 {
     position: absolute;
     width: 3cm;
     height: 3cm;
     background: grey;
     border-radius: 50%;
     margin-top: 300px;
-      }
-  .circle3:nth-child(1) {
+}
+.circle3:nth-child(1) {
     transform: rotate(-90deg) translateX(250px);
-  }
-  .circle3:nth-child(2) {
+}
+.circle3:nth-child(2) {
     transform: rotate(-54deg) translateX(250px);
-  }
-  .circle3:nth-child(3) {
+}
+.circle3:nth-child(3) {
     transform: rotate(-18deg) translateX(250px);
-  }
-  .circle3:nth-child(4) {
+}
+.circle3:nth-child(4) {
     transform: rotate(18deg) translateX(250px);
-  }
-  .circle3:nth-child(5) {
+}
+.circle3:nth-child(5) {
     transform: rotate(54deg) translateX(250px);
-  }
-  .circle3:nth-child(6) {
+}
+.circle3:nth-child(6) {
     transform: rotate(90deg) translateX(250px);
-  }
-  .circle3:nth-child(7) {
+}
+.circle3:nth-child(7) {
     transform: rotate(126deg) translateX(250px);
-  }
-  .circle3:nth-child(8) {
+}
+.circle3:nth-child(8) {
     transform: rotate(162deg) translateX(250px);
-  }
-  .circle3:nth-child(9) {
+}
+.circle3:nth-child(9) {
     transform: rotate(198deg) translateX(250px);
-  }
-  .circle3:nth-child(10) {
+}
+.circle3:nth-child(10) {
     transform: rotate(234deg) translateX(250px);
-  }
+}
 
-
-
-  .linecircle{
+.linecircle {
     position: absolute;
     width: 3cm;
     height: 3cm;
     background: grey;
     border-radius: 50%;
     margin-top: 50px;
-    margin-left: 2%;
-  }
- 
+}

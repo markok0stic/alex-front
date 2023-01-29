@@ -1,123 +1,118 @@
 <html>
 <head>
-
   <meta charset="utf-8" />
   <title>Saglasnost</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+    }
 
-      body {
-        font-family: "Times New Roman", Times, serif;
-      }
+    h1 {
+      text-align: center;
+    }
 
-      h1 {
-        text-align:center;
-      }
+    h3 {
+      text-align: center;
+      margin-right: 10%;
+      margin-left: 10%;
+    }
 
-      h3 {
-        text-align:center;
-        margin-right: 10%;
-        margin-left: 10%;
+    p {
+      text-align: center;
+    }
+    /* Style the button */
+    button {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      height: 30px;
+      width: 200px;
+      left: 85%;
+      top: 95%;
+      margin-top: -15px; /* = -height / 2   */
+      margin-left: -100px; /* = -width / 2    */
+      position: fixed; /* Fixed is better */
+    }
 
-      }
+    .button2 {
+      left: 15%;
+    }
 
-
-      p {
-          text-align:center;
-      }
-      /* Style the button */
-      button {
-        appearance: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        height: 30px;
-        width: 200px;
-        left: 85%;
-        top: 95%;
-        margin-top: -15px;   /* = -height / 2   */
-        margin-left: -100px; /* = -width / 2    */
-        position: fixed;     /* Fixed is better */
-
-      }
-
-      .button2 {
-        left: 15%;
-      }
-
-      input[type=text] {
-        width: 40%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid red;
-        border-radius: 4px;
-      }
-
-
-</style>
+    input[type="text"] {
+      width: 40%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid red;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 
 <body>
+&nbsp; &nbsp;
 
+<h1>
+  Saglasnost za učestvovanje u istraživanju Uticaj muzičkog obrazovanja na
+  radnu memoriju.
+</h1>
 
-&nbsp;
-&nbsp;
+<center><input type="text" id="idBox" readonly /></center>
 
-<h1>Saglasnost za učestvovanje u istraživanju Uticaj muzičkog obrazovanja na radnu memoriju.</h1>
-
-<center><input type="text" id="idBox" readonly/></center>
-
-<h3>Molim vas da pažljivo pročitate SAGLASNOST. Kada završite, pritisnite sivo dugme na kome piše: Nastavi dalje.</h3>
-
-
+<h3>
+  Molim vas da pažljivo pročitate SAGLASNOST. Kada završite, pritisnite sivo
+  dugme na kome piše: Nastavi dalje.
+</h3>
 
 <div align="center">
-<embed src="consent/ConsentForm.pdf" type="application/pdf" width="80%" height="60%" />
+  <embed
+          src="consent/ConsentForm.pdf"
+          type="application/pdf"
+          width="80%"
+          height="60%"
+  />
 </div>
 
 <button id="exp_button" onclick="getConsent()">Nastavi dalje</button>
 
 <script>
   function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
     var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
-var sessionStart;
-    var sessionKey;
+    return results === null
+            ? ""
+            : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  var sessionStart;
+  var sessionKey;
 
-    var thisParam1;
+  var thisParam1;
 
-    var uniqueID;
-  
-    if (thisParam1 = getUrlParameter('ID')) {
-      uniqueID = thisParam1;
-    } else {
-      sessionStart = pad(Date.now(),16);
-      sessionKey = Math.floor(Math.random() * 1000);
-      sessionKey = pad(sessionKey,4);
-      uniqueID = sessionStart + "_" + sessionKey;
-    }
-  
-    
+  var uniqueID;
+
+  if ((thisParam1 = getUrlParameter("ID"))) {
+    uniqueID = thisParam1;
+  } else {
+    sessionStart = pad(Date.now(), 16);
+    sessionKey = Math.floor(Math.random() * 1000);
+    sessionKey = pad(sessionKey, 4);
+    uniqueID = sessionStart + "_" + sessionKey;
+  }
 
   var pageString = "Demographics.html?ID=";
-  var finalURL = pageString+uniqueID.toString();
+  var finalURL = pageString + uniqueID.toString();
   document.getElementById("idBox").value = uniqueID;
   function getConsent() {
+    var consent = confirm(
+            "Pritiskanjem tastera, potvrđujem da se slažem sa onim što je opisano u Saglasnosti."
+    );
 
-
-var consent = confirm("Pritiskanjem tastera, potvrđujem da se slažem sa onim što je opisano u Saglasnosti.");
-
-if (consent) {
-
-  window.location.href = finalURL;
-} 
-}
+    if (consent) {
+      window.location.href = finalURL;
+    }
+  }
 </script>
-
-
-
 </body>
 </html>
