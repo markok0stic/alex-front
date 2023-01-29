@@ -24,13 +24,15 @@ if ((thisParam1 = getUrlParameter("ID"))) {
 }
 
 function Instrument() {
-    document.getElementById("instrument1").innerHTML =
-        "<br>Koji instrument svirate: <label> <input type='text' id='vrstainstrumenta' name='vrstainstrumenta'> </label></br>" +
-        "</br> Koliko vremena dnevno provedete svirjuci taj instrument <label> <select id= 'vreme' name= 'vreme' size=3> <option value = 'Manje od 30 minuta'> Manje od 30 minuta </option> <option value = 'Manje od 120 minuta'> Manje od 120 minuta </option> <option value = 'Više od 30 minuta'> Više od 30 minuta </option> </select> </br>";
+    const elm = document.getElementById("instrument1");
+    elm.classList.remove('hidden');
+    elm.classList.add('proper-format')
 }
 
 function Nestani() {
-    document.getElementById("instrument1").innerHTML = "";
+    const elm = document.getElementById("instrument1");
+    elm.classList.add('hidden');
+    elm.classList.remove('proper-format');
 }
 
 function submitDemographics() {

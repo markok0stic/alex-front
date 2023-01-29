@@ -1,22 +1,38 @@
 import { Slucaj } from "../models/Slucaj.js";
-import {ExperimentResult} from "../models/ExperimentResult";
-import {appServer} from "./servers";
+import {ExperimentResult} from "../models/ExperimentResult.js";
+import {appServer} from "./servers.js";
 
 let mainContainer = document.createElement("div");
 mainContainer.className = "mainContainer";
 document.body.appendChild(mainContainer);
 
 let lblNaslov = document.createElement("label");
-lblNaslov.className = "lblNaslov";
-lblNaslov.innerHTML =
-    "DA ZAPOČNES EXPERIMENT PRITISNI DUGME: Započni experiment";
+lblNaslov.classList.add('lbl-desc')
+lblNaslov.innerText = `U ovom eksperimentu biće Vam prikazani kružići.
+
+Eksperiment se sastoji iz dva dela:
+
+Prvi deo - gde je potrebno da pažljivo posmatrate pojavljivanje kružića
+Drugi deo – gde ćete opet posmatrati pojavljivanje kružića, ali tako da obratite pažnju na to da li postoji ili ne postoji razlika između prvog dela eksperimenta i drugog.
+
+Ukoliko postoji razlika, pritisnite slovo L na tastaturi, ukoliko ne postoji, pritisnite A.
+
+Molim Vas da pozicionirate kažiprste obe ruke iznad tastature, odnosno iznad tastera A i L. Ovo će Vam omogućiti da odgovarate brzo!
+`
 mainContainer.appendChild(lblNaslov);
 
+let divStartExp = document.createElement("div")
+divStartExp.classList.add('divStart');
+let lblStartExp = document.createElement("label");
+lblStartExp.innerHTML = "Da započnes eksperiment pritsni dugme: ";
+divStartExp.appendChild(lblStartExp);
+
 let btnStart = document.createElement("button");
-btnStart.className = "btnStart";
-btnStart.innerHTML = "Započni experiment";
+btnStart.innerText = "Započni eksperiment";
+btnStart.classList.add('div-start-btn')
 btnStart.onclick = (ev) => startExperiment(mainContainer);
-mainContainer.appendChild(btnStart);
+divStartExp.appendChild(btnStart);
+mainContainer.appendChild(divStartExp);
 
 let smallContainer = document.createElement("div");
 smallContainer.className = "smallContainer";

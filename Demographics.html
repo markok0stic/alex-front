@@ -49,7 +49,6 @@
 		input[type="text"] {
 			width: 40%;
 			padding: 12px 20px;
-			margin: 8px 0;
 			box-sizing: border-box;
 			/* border: 2px solid red;
             border-radius: 4px; */
@@ -64,10 +63,10 @@
 			left: 25%;
 			top: 10%;
 			text-align: left;
-			border-style: solid black;
-			border-width: 5px;
+			display: flex;
+			flex-direction: column;
+			row-gap: 5px;
 			/* display: inline-block; */
-			padding: 5px 30px;
 		}
 
 		.border {
@@ -81,13 +80,37 @@
 			width: 50%;
 			padding: 12px 12px;
 		}
+		.div-row{
+			display: flex;
+			flex-direction: column;
+		}
+		.hidden{
+			display: none;
+		}
+		.proper-format{
+			display: flex;
+			flex-direction: column;
+			padding-bottom: 9px;
+		}
+		.pad{
+			padding-bottom: 9px;
+			display: flex;
+			flex-direction: column;
+		}
+		.lil-pad{
+			padding-bottom: 9px;
+			display: flex;
+			flex-direction: column;
+		}
+		select{
+			width: 40%;
+		}
 	</style>
 </head>
 
 <body>
-&nbsp; &nbsp;
 
-<h1>Uticaj muzičkog obrazovanja na radnu memoriju - Demografski podaci</h1>
+<h1>Demografski podaci</h1>
 
 <h3>
 	Molimo vas da popunite ove podatke o sebi pre nego što počnete sam
@@ -96,34 +119,37 @@
 
 <div class="border">
 	<form id="demograpghicForm" class="checklist">
-		<label>POL :</label>
-		<label>
-			<input
-					type="radio"
-					id=" female"
-					name="gender"
-					class="gender"
-					value="Ženski"
-			/>&nbsp;Ženski
-		</label>
-		<label>
-			<input
-					type="radio"
-					id="male"
-					name="gender"
-					class="gender"
-					value="Muški"
-			/>&nbsp;Muški
-		</label>
-		<label>
-			<input
-					type="radio"
-					id=" other"
-					name="gender"
-					class="gender"
-					value="Drugo"
-			/>&nbsp;Drugo </label
-		><br /><br />
+		<div class="pad">
+			<label>Pol:</label>
+			<label>
+				<input
+						type="radio"
+						id=" female"
+						name="gender"
+						class="gender"
+						value="Ženski"
+				/>&nbsp;Ženski
+			</label>
+			<label>
+				<input
+						type="radio"
+						id="male"
+						name="gender"
+						class="gender"
+						value="Muški"
+				/>&nbsp;Muški
+			</label>
+			<label>
+				<input
+						type="radio"
+						id=" other"
+						name="gender"
+						class="gender"
+						value="Drugo"
+				/>&nbsp;Drugo </label
+			>
+		</div>
+		<div class="pad">
 		<label for="quantity">Starost/godine (23-33): </label>
 		<input
 				type="number"
@@ -132,23 +158,31 @@
 				min="1"
 				max="100"
 				value="0"
-		/><br /><br />
-		<label
-		>Da li svirate neki instrument ili se bavite nekom vrstom
-			pevanja?</label
-		>
-		<br />
+		/></div>
+		<div class="pad">
+		<label>Da li svirate ili ste svirali neki insturment?</label>
 		<label>
 			<input type="radio" id="kamernop" name="struka" value="Da" />&nbsp;Da
 		</label>
 		<label>
 			<input type="radio" id="ne" name="struka" value="Ne" />&nbsp;Ne
 		</label>
-		<div id="instrument1"></div>
-		<br />
-		<label>Da li ste završili nesto od ponudjenog?</label>
+		</div>
+		<div id="instrument1" class="hidden">
+			<div class="lil-pad">
+			<label>Koji instrument svirate ili ste svirali:</label>
+			<input type='text' id='vrstainstrumenta' name='vrstainstrumenta'>
+			</div>
+				<label>Koliko vremena dnevno provedete svirjuci taj instrument:</label>
+			<select id= 'vreme' name= 'vreme' size=1>
+				<option value = 'Manje od 30 minuta'> Manje od 30 minuta</option>
+				<option value = 'Manje od 120 minuta'> Manje od 120 minuta</option>
+				<option value = 'Više od 120 minuta'> Više od 120 minuta</option>
+			</select>
+		</div>
+		<div style="display: flex;flex-direction: column">
+		<label>Da li ste završili nesto od ponuđenog?</label>
 		<label>
-			<br />
 			<input
 					type="radio"
 					id="nms"
@@ -180,11 +214,11 @@
 					value="Ništa od ponuđenog"
 			/>&nbsp;Ništa od ponuđenog
 		</label>
+		</div>
 	</form>
 </div>
 <center><h2 id="textcont"></h2></center>
 <script type="module" src="scripts\Demographics.js"></script>
-
 <button id="exp_button">Nastavi dalje</button>
 </body>
 </html>

@@ -47,6 +47,25 @@ body {
     margin-left: -100px;
     position: fixed;
 }
+.div-start-btn{
+    margin-top: 10px;
+    font-size: 20px;
+}
+.lbl-desc{
+    position: absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%,-50%);
+    font-size: 32px;
+}
+.divStart {
+    text-align: center;
+    height: 101px;
+    width: 207px;
+    left: 82%;
+    top: 78%;
+    font-size: 27px;
+    position: fixed;
+}
 .smallContainer {
     display: flex;
     flex: 0 0;
