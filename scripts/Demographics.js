@@ -41,7 +41,7 @@ function submitDemographics() {
     let tbGod = thisForm.querySelector("input[type=number]");
     let inst = document.getElementById("instrument1");
 
-    if (inst != null && inst.innerHTML != "") {
+    if (inst != null && !inst.classList.contains('hidden')) {
         let tbInstrument = document.getElementById("vrstainstrumenta");
         let selVreme = document.getElementById("vreme");
         if (tbGod.value < 23 || tbGod.value > 33) {
@@ -58,7 +58,7 @@ function submitDemographics() {
                 confirm("Pažnja niste uneli neko polje!");
             else {
                 document.getElementById("textcont").innerHTML =
-                    "Molimo sačekajte experiment se učitava!";
+                    "Učitavanje...";
                 document.getElementById("exp_button").disabled = true;
                 let listaVrednsti = [];
                 rbs.forEach((el) => {
@@ -69,11 +69,12 @@ function submitDemographics() {
                     uniqueID,
                     listaVrednsti[0],
                     tbGod.value,
-                    listaVrednsti[1],
                     tbInstrument.value,
                     selVreme.options[selVreme.selectedIndex].value,
-                    listaVrednsti[2]
+                    listaVrednsti[2],
+                    undefined
                 );
+                console.log(JSON.stringify(user));
                 fetch(`${appServer}/Users/AddUser`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -97,7 +98,7 @@ function submitDemographics() {
                 confirm("Pažnja niste uneli neko polje!");
             else {
                 document.getElementById("textcont").innerHTML =
-                    "Molimo sačekajte experiment se učitava!";
+                    "Učitavanje...";
                 document.getElementById("exp_button").disabled = true;
                 let listaVrednsti = [];
                 rbs.forEach((el) => {
@@ -110,9 +111,10 @@ function submitDemographics() {
                     tbGod.value,
                     listaVrednsti[1],
                     undefined,
-                    undefined,
-                    listaVrednsti[2]
+                    listaVrednsti[2],
+                    undefined
                 );
+                console.log(JSON.stringify(user));
                 fetch(`${appServer}/Users/AddUser`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

@@ -7,19 +7,23 @@ mainContainer.className = "mainContainer";
 document.body.appendChild(mainContainer);
 
 let lblNaslov = document.createElement("label");
-lblNaslov.classList.add('lbl-desc')
-lblNaslov.innerText = `U ovom eksperimentu biće Vam prikazani kružići.
+lblNaslov.classList.add('lblNaslov')
+mainContainer.appendChild(lblNaslov);
+
+let lbldesc = document.createElement("label");
+lbldesc.classList.add('lbl-desc')
+lbldesc.innerText = `U ovom eksperimentu biće Vam prikazani kružići.
 
 Eksperiment se sastoji iz dva dela:
 
 Prvi deo - gde je potrebno da pažljivo posmatrate pojavljivanje kružića
-Drugi deo – gde ćete opet posmatrati pojavljivanje kružića, ali tako da obratite pažnju na to da li postoji ili ne postoji razlika između prvog dela eksperimenta i drugog.
+Drugi deo - gde ćete opet posmatrati pojavljivanje kružića, ali tako da obratite pažnju na to da li postoji ili ne postoji razlika između prvog dela eksperimenta i drugog.
 
 Ukoliko postoji razlika, pritisnite slovo L na tastaturi, ukoliko ne postoji, pritisnite A.
 
 Molim Vas da pozicionirate kažiprste obe ruke iznad tastature, odnosno iznad tastera A i L. Ovo će Vam omogućiti da odgovarate brzo!
 `
-mainContainer.appendChild(lblNaslov);
+mainContainer.appendChild(lbldesc);
 
 let divStartExp = document.createElement("div")
 divStartExp.classList.add('divStart');
@@ -77,10 +81,12 @@ function openFullscreen() {
     else if (document.documentElement.msRequestFullscreen)
         document.documentElement.msRequestFullscreen();
 }
-let brojIteracija = 2;
+let brojIteracija = 1;
 
 async function startExperiment() {
-    btnStart.style = "display:none";
+    divStartExp.style = "display:none";
+    lbldesc.style = "display:none";
+
     listaOdgovora = [];
     listaResenja = [];
     listaVremenaReakcije = [];
@@ -141,8 +147,7 @@ function shuffle(array) {
 }
 
 function popuniBazu() {
-    document.querySelector(".mainContainer").innerHTML =
-        "<center><h1>Experiment se završava, molimo sačekajte!</h1></center>";
+
     console.log(listaOdgovora);
     console.log(listaResenja);
     console.log(listaVremenaReakcije);
@@ -152,21 +157,37 @@ function popuniBazu() {
     let listExperimentResults = [];
 
     for (let i = 0; i < listaOdgovora.length; i++) {
-        listExperimentResults.push(new ExperimentResult(listaOdgovora[i],listaResenja[i],listaVremenaReakcije[i]))
+        listExperimentResults.push(new ExperimentResult(listaResenja[i],listaOdgovora[i],listaVremenaReakcije[i]))
     }
 
     fetch(
-        `${appServer}/Users/AddExperimentResult?userId=` + uniqueID, {
-            method: "PUT",
+        `${appServer}/Users/AddExperimentResult?userId=` + ID, {
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(listExperimentResults)
-        }
-    ).then(async (s) => {
+        }).then(async (s) => {
         if (s.ok) {
             console.log("uspesno");
             document.querySelector(".mainContainer").innerHTML =
                 "<center><h1>Eksperiment je završen, hvala na učestvovanju!</h1></center>";
             await document.exitFullscreen();
         }
+
+        var mainContainer = document.querySelector('.mainContainer');
+        mainContainer.innerHTML = ``;
+        lbldesc.style="display:initial;"
+        lbldesc.innerText =
+            `Mnogo Vam hvala što ste učestvovali u ovom eksperimentu i pomogli mi!
+        
+       Ukoliko Vas zanimaju vaši rezultati u odnosu na ostale ispitanike, molim Vas da mi pošaljete Vaš lični kod (istraživanje je anonimno, tako da bez koda ne znamo ko ste).`
+        mainContainer.appendChild(lbldesc);
+
+    }).catch(()=>{
+        var mainContainer = document.querySelector('.mainContainer');
+        mainContainer.innerHTML = ``;
+        lbldesc.style="display:initial;"
+        lbldesc.innerText =
+            `Doslo je do problema prilikom dodavanja na serveru.`
+        mainContainer.appendChild(lbldesc);
     });
 }
