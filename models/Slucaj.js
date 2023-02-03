@@ -12,6 +12,7 @@ export class Slucaj {
         this.resenje = "*";
         Slucaj.Odgovor = "*";
         Slucaj.vremeReakcije = -1;
+        this.maxVarijacijaPozicijeKrugaUPx = 250;
     }
 
     getRandomInt(min, max) {
@@ -144,7 +145,7 @@ export class Slucaj {
                 dom.innerHTML = "";
                 let c = new Circle(this.klasa);
                 this.plusminus.push(this.getRandomInt(1, 6) < 3 ? -1 : 1);
-                this.listaRandomPozicija.push(this.getRandomInt(0, 100));
+                this.listaRandomPozicija.push(this.getRandomInt(-this.maxVarijacijaPozicijeKrugaUPx, this.maxVarijacijaPozicijeKrugaUPx));
                 setTimeout(() => {
                     c.crtajKrugNaLiniji(
                         p,
@@ -218,7 +219,7 @@ export class Slucaj {
                         let DaLiSePozicijaMenja = this.getRandomInt(1, 6) < 3 ? 0 : 1;
                         if (DaLiSePozicijaMenja) {
                             this.plusminus[i] = this.getRandomInt(1, 6) < 3 ? -1 : 1;
-                            this.listaRandomPozicija[i] = this.getRandomInt(0, 100);
+                            this.listaRandomPozicija[i] = this.getRandomInt(-this.maxVarijacijaPozicijeKrugaUPx, this.maxVarijacijaPozicijeKrugaUPx);
                         }
                         let p = this.getRandomInt(0, 5);
                         this.listaRandomIntervala[i] = this.listaIntervala[p];

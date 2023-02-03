@@ -105,7 +105,13 @@ async function startExperiment() {
     for (let i = 0; i < brojIteracija; i++) await crtaj(10, j[i]);
 
     await shuffle(j);
+    for (let i = 0; i < brojIteracija; i++) await crtaj2(6, j[i]);
+
+    await shuffle(j);
     for (let i = 0; i < brojIteracija; i++) await crtaj2(8, j[i]);
+
+    await shuffle(j);
+    for (let i = 0; i < brojIteracija; i++) await crtaj2(10, j[i]);
 
     await popuniBazu();
 }
